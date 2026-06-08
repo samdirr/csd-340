@@ -1,0 +1,65 @@
+/*
+    Sam Dirr
+    Assignment 2.2 - Building a Web Page Exercise, Part 2
+*/
+
+html,
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+#container {
+    margin: 2% 5% 100px;
+}
+
+p {
+    font-weight: 400;
+    line-height: 1.4em;
+}
+
+h1 {
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-weight: 500;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.intro {
+    text-indent: 2em;
+}
+
+.sentence {
+    font-style: italic;
+}
+
+address {
+    text-align: center;
+}
+
+address p {
+    margin: 0;
+}
+
+address a {
+    color: #4f3674;
+    font-size: 1.25em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+address a:hover {
+    background-color: #d6a800;
+    text-decoration: underline;
+}
+
+address a:visited {
+    color: #6f5a8a;
+}
