@@ -1,0 +1,71 @@
+/*
+    Sam Dirr
+    Assignment 3.3 - Build a Web Page Exercise, Part 3
+    June 14, 2026
+*/
+
+h1 {
+    text-align: center;
+}
+
+#books,
+#lessons {
+    width: 45%;
+}
+
+#books {
+    float: left;
+}
+
+#lessons {
+    float: right;
+}
+
+h3 {
+    font-weight: 500;
+    padding: 10px;
+}
+
+ol,
+ul {
+    font-weight: 300;
+}
+
+#books h3,
+#books ol {
+    border: 1px solid red;
+    border-radius: 15px;
+}
+
+#books ol {
+    padding: 10px;
+    list-style-position: inside;
+}
+
+#lessons h3,
+#lessons ul {
+    border: 1px dashed red;
+    border-radius: 15px;
+}
+
+#lessons ul {
+    padding: 10px;
+    list-style-type: upper-roman;
+    list-style-position: inside;
+}
+
+#bottom {
+    clear: both;
+    width: 100%;
+    margin-top: 60%;
+    margin-bottom: 20px;
+    float: right;
+}
+
+#bottom a {
+    float: right;
+}
+
+a:hover {
+    text-decoration: underline;
+}
