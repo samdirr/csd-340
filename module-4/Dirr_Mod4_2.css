@@ -1,0 +1,50 @@
+#image-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 10%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+figure {
+    text-align: center;
+}
+
+figcaption {
+    font-style: italic;
+    font-size: 0.75em;
+}
+
+h1 {
+    color: rgba(185, 63, 8, 1);
+}
+
+h3 {
+    color: rgba(185, 63, 8, 1);
+}
+
+figcaption {
+    color: rgba(185, 63, 8, 1);
+}
+
+.last {
+    float: right;
+    margin-top: 10%;
+}
+
+#image-gallery > div {
+    border: 1px solid rgba(185, 63, 8, 1);
+}
+#image-gallery img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
+object-fit: contain;
