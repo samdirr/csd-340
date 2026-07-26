@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Name: Sam Dirr
+        Assignment: 10.3
+        Date: July 26, 2026
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSD 340 Web Development with HTML and CSS</title>
+
+    <style>
+        :root {
+            --accent-color: #7b2cbf;
+            --accent-light: #ead7f7;
+            --page-background: #f7f3fb;
+            --card-background: #ffffff;
+            --text-color: #27222c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--page-background);
+            color: var(--text-color);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--accent-color), #3c096c);
+            color: #ffffff;
+            padding: 38px 20px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        header p {
+            letter-spacing: 0.08em;
+            margin: 0 0 8px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            margin: 0;
+        }
+
+        main {
+            margin: 40px auto;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .instructions {
+            margin: 0 auto 28px;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .instructions h2 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .memory-display {
+            background-color: var(--card-background);
+            border: 4px solid var(--accent-color);
+            border-radius: 24px;
+            box-shadow: 0 14px 35px rgba(39, 34, 44, 0.14);
+            display: grid;
+            gap: 28px;
+            grid-template-columns: 1.1fr 0.9fr;
+            overflow: hidden;
+            padding: 24px;
+            transition: border-color 0.3s ease;
+        }
+
+        .featured-image {
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .memory-copy {
+            align-self: center;
+            padding: 12px;
+        }
+
+        .memory-label {
+            color: var(--accent-color);
+            font-size: 0.82rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        #memory-title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin: 0 0 14px;
+        }
+
+        #memory-description {
+            margin-bottom: 0;
+        }
+
+        .choices {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 34px;
+        }
+
+        .choice {
+            background-color: var(--card-background);
+            border: 3px solid transparent;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(39, 34, 44, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            padding: 8px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .choice:hover,
+        .choice:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            transform: translateY(-5px);
+        }
+
+        .choice.active-choice {
+            border-color: var(--accent-color);
+            background-color: var(--accent-light);
+        }
+
+        .choice img {
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            display: block;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .choice p {
+            font-weight: bold;
+            margin: 10px 5px 4px;
+            text-align: center;
+        }
+
+        .reset-area {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            border: 0;
+            border-radius: 999px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 12px 24px;
+        }
+
+        button:hover,
+        button:focus {
+            filter: brightness(1.12);
+        }
+
+        footer {
+            background-color: #27222c;
+            color: #ffffff;
+            margin-top: 50px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f2ccff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 720px) {
+            .memory-display {
+                grid-template-columns: 1fr;
+            }
+
+            .choices {
+                grid-template-columns: 1fr;
+            }
+
+            .choice {
+                display: grid;
+                gap: 14px;
+                grid-template-columns: 130px 1fr;
+            }
+
+            .choice p {
+                align-self: center;
+                margin: 0;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <p>CSD 340 Web Development with HTML and CSS</p>
+    <h1>Assignment 10.3: JavaScript - Part 2</h1>
+</header>
+
+<main>
+    <section class="instructions">
+        <h2>Click to Change the Adventure</h2>
+        <p>
+            Hover over an image to preview a memory, just like the Module 10
+            example. Click the image to select it and keep it on display.
+        </p>
+    </section>
+
+    <section class="memory-display" aria-live="polite">
+        <img
+            class="featured-image"
+            id="featured-image"
+            src="images/disney-memory.jpg"
+            alt="Madi and Sam enjoying an evening at Disney"
+        >
+
+        <div class="memory-copy">
+            <p class="memory-label">Featured Adventure</p>
+            <h2 id="memory-title">Disney After Sunset</h2>
+            <p id="memory-description">
+                An evening at Disney combines favorite attractions, fun
+                memories, and a little extra magic after the sun goes down.
+            </p>
+        </div>
+    </section>
+
+    <section class="choices" aria-label="Choose a featured adventure">
+        <div class="choice active-choice">
+            <img
+                src="images/disney-memory.jpg"
+                alt="Choose the Disney adventure"
+                role="button"
+                tabindex="0"
+                onmouseover="previewMemory(0)"
+                onmouseout="restoreMemory()"
+                onclick="showMemory(0, this)"
+                onkeydown="handleKey(event, 0, this)"
+            >
+            <p>Disney Adventure</p>
+        </div>
+
+        <div class="choice">
+            <img
+                src="images/lake-memory.jpg"
+                alt="Choose the lake adventure"
+                role="button"
+                tabindex="0"
+                onmouseover="previewMemory(1)"
+                onmouseout="restoreMemory()"
+                onclick="showMemory(1, this)"
+                onkeydown="handleKey(event, 1, this)"
+            >
+            <p>Lake Day</p>
+        </div>
+
+        <div class="choice">
+            <img
+                src="images/big-ten-memory.jpg"
+                alt="Choose the Big Ten championship memory"
+                role="button"
+                tabindex="0"
+                onmouseover="previewMemory(2)"
+                onmouseout="restoreMemory()"
+                onclick="showMemory(2, this)"
+                onkeydown="handleKey(event, 2, this)"
+            >
+            <p>Championship Celebration</p>
+        </div>
+    </section>
+
+    <div class="reset-area">
+        <button type="button" onclick="resetDisplay()">Reset Adventure</button>
+    </div>
+</main>
+
+<footer>
+    <a href="../index.html">Back to the CSD 340 Landing Page</a>
+</footer>
+
+<script>
+    const memories = [
+        {
+            image: "images/disney-memory.jpg",
+            alt: "Madi and Sam enjoying an evening at Disney",
+            title: "Disney After Sunset",
+            description: "An evening at Disney combines favorite attractions, fun memories, and a little extra magic after the sun goes down.",
+            color: "#7b2cbf",
+            lightColor: "#ead7f7"
+        },
+        {
+            image: "images/lake-memory.jpg",
+            alt: "Madi and Sam sitting together on a boat at the lake",
+            title: "A Relaxing Lake Day",
+            description: "A day on the water is a chance to slow down, enjoy the view, and spend time together away from a busy schedule.",
+            color: "#087f8c",
+            lightColor: "#d6f1f3"
+        },
+        {
+            image: "images/big-ten-memory.jpg",
+            alt: "Madi and Sam celebrating a Big Ten championship",
+            title: "Big Ten Championship Win",
+            description: "The excitement of a championship is even better when the moment is shared with someone important.",
+            color: "#b21e35",
+            lightColor: "#f7d9de"
+        }
+    ];
+
+    let selectedIndex = 0;
+
+    function updateDisplay(index) {
+        const selectedMemory = memories[index];
+        const featuredImage = document.getElementById("featured-image");
+
+        featuredImage.src = selectedMemory.image;
+        featuredImage.alt = selectedMemory.alt;
+        document.getElementById("memory-title").textContent =
+            selectedMemory.title;
+        document.getElementById("memory-description").textContent =
+            selectedMemory.description;
+
+        document.documentElement.style.setProperty(
+            "--accent-color",
+            selectedMemory.color
+        );
+        document.documentElement.style.setProperty(
+            "--accent-light",
+            selectedMemory.lightColor
+        );
+    }
+
+    function previewMemory(index) {
+        updateDisplay(index);
+    }
+
+    function restoreMemory() {
+        updateDisplay(selectedIndex);
+    }
+
+    function showMemory(index, clickedImage) {
+        selectedIndex = index;
+        updateDisplay(index);
+
+        const choices = document.querySelectorAll(".choice");
+        choices.forEach(function (choice) {
+            choice.classList.remove("active-choice");
+        });
+        clickedImage.parentElement.classList.add("active-choice");
+    }
+
+    function handleKey(event, index, selectedImage) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            showMemory(index, selectedImage);
+        }
+    }
+
+    function resetDisplay() {
+        const firstChoice = document.querySelector(".choice img");
+        selectedIndex = 0;
+        showMemory(0, firstChoice);
+    }
+</script>
+</body>
+</html>
